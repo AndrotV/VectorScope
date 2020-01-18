@@ -1,6 +1,5 @@
 class MidiContext {
 	context = null;
-	// notes = [];
 
 	constructor() {
 		if (!navigator.requestMIDIAccess()) {
@@ -9,11 +8,10 @@ class MidiContext {
 		this.context = new AudioContext();
 	}
 
-	newNote(freq, type) {
+	newNote(freq) {
 		let o = this.context.createOscillator();
 		// o.frequency.setTargetAtTime(123, this.context.currentTime, 0);
 		o.frequency.value = freq;
-		o.type = type;
 		console.log(o);
 		o.connect(this.context.destination);
 		o.start();
