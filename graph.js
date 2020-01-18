@@ -2,17 +2,18 @@ const width = 500;
 const height = 500;
 const xaxis = 250;
 const yaxis = 250;
-const dimrate = .05; //how fast pixel dims out per refresh in [0,1]
+const dimrate = .01; //how fast pixel dims out per refresh in [0,1]
 
 let canvas = document.querySelector('#graph-canvas');
 
 let ctx = canvas.getContext('2d');
 
-ctx.moveTo(0, 250);
-ctx.lineTo(500, 250);
+//create axis lines
+ctx.moveTo(0, yaxis);
+ctx.lineTo(width, yaxis);
 
-ctx.moveTo(250, 0);
-ctx.lineTo(250, 500);
+ctx.moveTo(xaxis, 0);
+ctx.lineTo(xaxis, height);
 
 ctx.stroke();
 
@@ -55,6 +56,15 @@ function refresh(graph) {
         ctx.fillStyle = `rgb(${255-255*i},${255-255*i},${255-255*i})`;
         ctx.fillRect(pixel.x, pixel.y, 1, 1);
     });
+
+    //redraw axes
+    ctx.moveTo(0, yaxis);
+    ctx.lineTo(width, yaxis);
+
+    ctx.moveTo(xaxis, 0);
+    ctx.lineTo(xaxis, height);
+
+    ctx.stroke();
 
     //filter out any 0 intensity pixels
     graph.pixels = graph.pixels.filter(pixel => pixel.intensity > 0);
