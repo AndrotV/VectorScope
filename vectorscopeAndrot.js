@@ -20,7 +20,7 @@
 
 	function start() {
 		console.log("start");
-		timeline = setInterval(tick, 100); //refresh rate of 100Hz
+		timeline = setInterval(tick, 0.001); //refresh rate of 100Hz
 	}
 
 	function stop() {
@@ -62,7 +62,7 @@ ctx.stroke();
 
 let graph = {
     //drawn pixels
-    pixels: [],
+    pixels: [{x:0, y:0}],
 
     cursor: {
         x: 0,
@@ -80,37 +80,31 @@ function move(cursor) {
     };
 }
 
-//refresh the entire graph, 
-//drawing at cursor, 
-//and dimming all other pixels
+//remove last pixel, draw new one
 function refresh(graph) {
-    //dim each pixel in the graph
-    graph.pixels.forEach(pixel => {
-        pixel.intensity -= dimrate;
-    });
 
-    //add current cursor point to buffer of pixels
-    graph.pixels.push(new Pixel(graph.cursor.x, graph.cursor.y));
+    let pixel = graph.pixels[0];
 
-    //draw all the points with their resp. intensities
-    graph.pixels.forEach(pixel => {
-        let i = pixel.intensity;
-        //fraction of black based on intensity
-        ctx.fillStyle = `rgb(${255-255*i},${255-255*i},${255-255*i})`;
-        ctx.fillRect(pixel.x, pixel.y, 1, 1);
-    });
+    //remove last pixel
+    ctx.fillStyle = 'rgb(255,255,255)';
+    ctx.fillRect(pixel.x, pixel.y, 1, 1);
+
+    graph.pixels[0] = new Pixel(graph.cursor.x, graph.cursor.y);
+    pixel = graph.pixels[0];
+
+    //draw new pixel
+    ctx.fillStyle = 'rgb(0,0,0)';
+    ctx.fillRect(pixel.x, pixel.y, 1, 1);
+
 
     //redraw axes
-    ctx.moveTo(0, yaxis);
-    ctx.lineTo(width, yaxis);
+    //ctx.moveTo(0, yaxis);
+    //ctx.lineTo(width, yaxis);
 
-    ctx.moveTo(xaxis, 0);
-    ctx.lineTo(xaxis, height);
+    //ctx.moveTo(xaxis, 0);
+    //ctx.lineTo(xaxis, height);
 
-    ctx.stroke();
-
-    //filter out any 0 intensity pixels
-    graph.pixels = graph.pixels.filter(pixel => pixel.intensity > 0);
+    //ctx.stroke();
 }
 
 class Pixel {
