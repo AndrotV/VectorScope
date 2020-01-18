@@ -1,0 +1,94 @@
+input[type=range] {
+	-webkit-appearance: none;
+	margin: 10px 0;
+	width: 10vw;
+  }
+
+  /* Clicking the slider */
+  input[type=range]:focus {
+	outline: none;
+  }
+
+  /* Track not button */
+  input[type=range]::-webkit-slider-runnable-track {
+	width: 100%;
+	height: 10.8px;
+	cursor: pointer;
+	box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+	background: #338f40;
+	border-radius: 25px;
+	border: 0px solid #000101;
+  }
+  input[type=range]::-webkit-slider-thumb {
+	box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+	border: 2px solid #83e584;
+	height: 23px;
+	width: 23px;
+	border-radius: 23px;
+	background: #309610;
+	cursor: pointer;
+	-webkit-appearance: none;
+	margin-top: -5px;
+  }
+  input[type=range]:focus::-webkit-slider-runnable-track {
+	background: #338f40;
+  }
+  input[type=range]::-moz-range-track {
+	width: 100%;
+	height: 12.8px;
+	cursor: pointer;
+	box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+	background: #ac51b5;
+	border-radius: 25px;
+	border: 0px solid #000101;
+  }
+  input[type=range]::-moz-range-thumb {
+	box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+	border: 0px solid #000000;
+	height: 20px;
+	width: 39px;
+	border-radius: 7px;
+	background: #65001c;
+	cursor: pointer;
+  }
+  input[type=range]::-ms-track {
+	width: 100%;
+	height: 12.8px;
+	cursor: pointer;
+	background: transparent;
+	border-color: transparent;
+	border-width: 39px 0;
+	color: transparent;
+  }
+  input[type=range]::-ms-fill-lower {
+	background: #ac51b5;
+	border: 0px solid #000101;
+	border-radius: 50px;
+	box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  }
+  input[type=range]::-ms-fill-upper {
+	background: #ac51b5;
+	border: 0px solid #000101;
+	border-radius: 50px;
+	box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  }
+  input[type=range]::-ms-thumb {
+	box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+	border: 0px solid #000000;
+	height: 20px;
+	width: 39px;
+	border-radius: 7px;
+	background: #65001c;
+	cursor: pointer;
+  }
+  input[type=range]:focus::-ms-fill-lower {
+	background: #ac51b5;
+  }
+  input[type=range]:focus::-ms-fill-upper {
+	background: #ac51b5;
+  }
+  
+  body {
+	padding: 30px;
+  }
+
