@@ -1,10 +1,26 @@
 <html>
+    <head>
+		<link rel="stylesheet" href="main.css" type="text/css">
+    </head>
     <body>
 
         <canvas id="graph-canvas" width="500" height="500">
 
         </canvas>
         <script src="graph.js"></script>
+
+        <!-- Sliders at bottom of the screen -->
+        <script src="slider.js"></script>
+        <br><br>
+		40Hz <input type="range" min="40" max="20000" id="xHz" oninput="setInputVal('xHzInput', getInputVal('xHz'))"> 20kHz
+		<input style="width:75px" maxlength=6 type="text" id="xHzInput" onchange="setInputVal('xHz', getInputVal('xHzInput'))">
+		0 <input type="range" min="0" max="1" step="0.1" id="xPhase"> 1
+		<br>
+
+		40Hz <input type="range" min="40" max="20000" id="yHz" oninput="setInputVal('yHzInput', getInputVal('yHz'))"> 20kHz
+		<input style="width:75px" maxlength=6 type="text" id="yHzInput" onchange="setInputVal('yHz', getInputVal('yHzInput'))">
+		0 <input type="range" min="0" max="1" step="0.1" id="yPhase"> 1
+        
 
     </body>
 </html>
