@@ -1,8 +1,61 @@
+"use strict"
+
 const width = 500;
 const height = 500;
 const xaxis = 250;
 const yaxis = 250;
 const dimrate = .01; //how fast pixel dims out per refresh in [0,1]
+
+
+
+//constants
+const amplitude = 250;
+const period = 10;
+
+//global fields
+var timeline;
+var timeBlock;
+var freqBlock;
+
+let step = true;
+
+window.onload = function() {
+    timeBlock = document.getElementById("timeText");
+    freqBlock = document.getElementById("freqText");
+    var startButton = document.getElementById("startButton");
+    startButton.onclick = start;
+    var stopButton = document.getElementById("stopButton");
+    stopButton.onclick = stop;
+}
+
+function start() {
+    console.log("start");
+    timeline = setInterval(tick, 100);
+    //timeline = window.requestAnimationFrame(tick); //refresh rate of 60Hz
+    step = true;
+}
+
+function stop() {
+    console.log("stop");
+    clearInterval(timeline);
+    timeBlock.value = 0;
+    freqBlock.value = 0;
+    step = false;
+}
+
+function tick() {
+    var time = Number(timeBlock.value);
+    time += 0.01;
+    timeBlock.value = time;
+    var position = amplitude * Math.sin(time*2*Math.PI/period);
+    freqBlock.value = position;
+    move(graph.cursor).to(yaxis + position, 260);
+    refresh(graph);
+    if (step)
+        window.requestAnimationFrame(tick);
+}
+    
+
 
 let canvas = document.querySelector('#graph-canvas');
 
