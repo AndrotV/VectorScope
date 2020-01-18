@@ -1,23 +1,23 @@
 "use strict"
 
-const width = 500;
-const height = 500;
+const WIDTH = 500;
+const HEIGHT = 500;
 const xaxis = 250;
 const yaxis = 250;
-const dimrate = .01; //how fast pixel dims out per refresh in [0,1]
+const dimrate = .005; //how fast pixel dims out per refresh in [0,1]
 
 
 
 //constants
 const amplitude = 250;
-const period = 10;
+const period = 500;
 
 //global fields
 var timeline;
 var timeBlock;
 var freqBlock;
 
-let step = true;
+let step;
 
 window.onload = function() {
     timeBlock = document.getElementById("timeText");
@@ -30,14 +30,14 @@ window.onload = function() {
 
 function start() {
     console.log("start");
-    timeline = setInterval(tick, 100);
-    //timeline = window.requestAnimationFrame(tick); //refresh rate of 60Hz
+    //timeline = setInterval(tick, 100);
+    timeline = window.requestAnimationFrame(tick); //refresh rate of 60Hz
     step = true;
 }
 
 function stop() {
     console.log("stop");
-    clearInterval(timeline);
+    //clearInterval(timeline);
     timeBlock.value = 0;
     freqBlock.value = 0;
     step = false;
@@ -45,7 +45,7 @@ function stop() {
 
 function tick() {
     var time = Number(timeBlock.value);
-    time += 0.01;
+    time += 1;
     timeBlock.value = time;
     var position = amplitude * Math.sin(time*2*Math.PI/period);
     freqBlock.value = position;
@@ -99,6 +99,8 @@ function refresh(graph) {
         pixel.intensity -= dimrate;
     });
 
+    console.log(graph.pixels.length);
+
     //add current cursor point to buffer of pixels
     graph.pixels.push(new Pixel(graph.cursor.x, graph.cursor.y));
 
@@ -137,4 +139,52 @@ function enable_debug() {
         move(graph.cursor).to(e.offsetX, e.offsetY);
         refresh(graph);
     }
+}
+
+
+function plot(audioctx) {
+    let analyzer = audioctx.createAnalyzer();
+
+    analyzer.fftSize = 1024;
+
+    let buffLength = 1024;
+
+    let data = new Float32Array(buffLength);
+
+    draw(analyzer, data);
+    
+
+
+}
+
+function draw(analyzer, data) {
+
+    let drawing = requestAnimationFrame(draw);
+
+    analyzer.getFloatTimeDomainData(data);
+
+
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = 'rgb(0,0,0)';
+
+    ctx.beginPath();
+
+    let slice_width = WIDTH / data.length;
+
+    let x = 0;
+
+    for (let i = 0; i < buffLength; i++) {
+        let y = HEIGHT / 2 + data[i] * HEIGHT;
+
+        if (i == 0) {
+            ctx.moveTo(x,y);
+        } else {
+            ctx.lineTo(x,y);
+        }
+
+        x += slice_width;
+    }
+
+    ctx.lineTo(WIDTH, HEIGHT/2);
+    ctx.stroke();
 }
