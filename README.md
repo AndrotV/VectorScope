@@ -1,2 +1,4 @@
 # VectorScope
-for bigwads only
+No
+
+# Goals
