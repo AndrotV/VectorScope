@@ -84,19 +84,19 @@ class MicContext {
     }
 
     getFourierFreq1() {
-        console.log(this.fourierFreq1);
+        //console.log(this.fourierFreq1);
         return this.fourierFreq1;
     }
 
     getFourierFreq2() {
-        console.log(this.fourierFreq2);
+        //console.log(this.fourierFreq2);
         return this.fourierFreq2;
     }
 
     goodTol(f1, f2) {
         let m = Math.max(f1, f2);
         let n = (m / (Math.log(m) / Math.log(2))) / 6;
-        console.log("TOL: " + n);
+        //console.log("TOL: " + n);
         return Math.abs(f1 - f2) > n;
     }
 }
