@@ -28,7 +28,7 @@
           <input style="font-size:large; width:75px;" value=0.5Hz maxlength=5 type="text" id="yPhaseInput" onmousedown="removeHz('yPhaseInput')" onkeyup="setVal('yPhase', getVal('yPhaseInput', 0))" onfocusout="abbrFreqId('yPhaseInput')">
         </div>
         <div class="phase"><h1>Phase</h1></div>
-        <div class="microphone"><Button id="microphoneBtn" onclick="toggleMicrophone('microphoneBtn', 'xHz', 'yHz', 'yPhase', 'xPhase')"><h2>Microphone</h2></Button></div>
+        <div class="microphone"><Button id="microphoneBtn" onclick="toggleMicrophone('xHz', 'yHz', 'yPhase', 'xPhase')"><h2>Microphone</h2></Button></div>
       </div>
         <script src="vectorscope.js"></script>
 
