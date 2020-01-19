@@ -2,8 +2,8 @@
 let canvas = document.querySelector('#graph-canvas');
 let ctx = canvas.getContext('2d');
 
-let f1 = 1;
-let f2 = 50;
+let f1 = 180;
+let f2 = 200;
 
 const SLIDER = 0;
 const MIC = 1;
@@ -65,15 +65,16 @@ function draw() {
 
     while (true) {
         //do this until t2 hits
-        for (t = t2; t <= t2 + (1/f1 || 0); t += (1/Math.max(f2,f1) || 0) / 100) {
+        for (t = t2; t <= t2 + 1/f1; t += 1/Math.max(f2,f1) / 100) {
             x = AMP * Math.sin(t * 2*Math.PI * f1 + PHASE); //map f1 to x
             y = AMP * Math.sin(t * 2*Math.PI * f2); //map f2 to y
 
             ctx.lineTo(ORIGIN.x + x, ORIGIN.y - y);
+            if (f1 == 0) break;
         }
-        t2 += (1/f1 || 0);
+        t2 += 1/f1;
 
-        if (f2 == 0 || t2 >= 1/f2) break;
+        if (t2 >= 1/f2 || f2 == 0 || f1 == 0) break;
     }    
 
     ctx.stroke();
