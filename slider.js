@@ -16,7 +16,7 @@ function expandFreq(val){
 }
 
 function getVal(id, base){
-    var val = Number(document.getElementById(id).value);
+    var val = Number(expandFreq(document.getElementById(id).value));
     if (base == 0)
         return val;
     return (Math.pow(base, val)).toFixed(1);
