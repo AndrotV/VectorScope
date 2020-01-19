@@ -2,8 +2,8 @@
 let canvas = document.querySelector('#graph-canvas');
 let ctx = canvas.getContext('2d');
 
-let f1 = 440;
-let f2 = 880;
+let f1 = 256;
+let f2 = 256;
 
 const SLIDER = 0;
 const MIC = 1;
@@ -92,6 +92,8 @@ function draw() {
 let micon = false;
 let startButton = document.querySelector("#microphoneBtn");
 startButton.addEventListener('click', function() {
+    ctx.fillStyle = `rgb(220, 220, 200)`;
+    ctx.fillRect(0, 0, WIDTH, HEIGHT);
     if (!micon) {
         console.log("Mic on!");
         miccontext.resume();
@@ -100,6 +102,8 @@ startButton.addEventListener('click', function() {
     } else {
         console.log("Mic off!");
         // miccontext.suspend();
+        f1 = 256;
+        f2 = 256;
         input = SLIDER;
         micon = false;
     }
@@ -113,3 +117,4 @@ function gcd(a, b) {
     // general case
     return gcd(b, a % b);
 }
+draw();

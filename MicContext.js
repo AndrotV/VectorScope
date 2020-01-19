@@ -84,12 +84,12 @@ class MicContext {
     }
 
     getFourierFreq1() {
-        //console.log(this.fourierFreq1);
+        // console.log(this.fourierFreq1);
         return this.fourierFreq1;
     }
 
     getFourierFreq2() {
-        //console.log(this.fourierFreq2);
+        // console.log(this.fourierFreq2);
         return this.fourierFreq2;
     }
 
