@@ -16,7 +16,7 @@ class MicContext {
         let micAnalyser = this.micAnalyser;
         this.micGain = this.micContext.createGain();
         let micGain = this.micGain;
-        let mediaStream = navigator.mediaDevices.getUserMedia({audio: true})
+        navigator.mediaDevices.getUserMedia({audio: true})
             .then(function(stream) {
                 source = micContext.createMediaStreamSource(stream);
                 source.connect(micGain);
@@ -52,17 +52,20 @@ class MicContext {
     }
 
     updateFourierData() {
-        this.fourierFreq1 = -Infinity;
-        this.fourierFreq2 = -Infinity;
+        let db1 = -Infinity;
+        let db2 = -Infinity;
         this.micAnalyser.getFloatFrequencyData(this.fourierData);
-        console.log(this.fourierData);
+        //console.log(this.fourierData);
         for (let i = 0; i < this.bufferLength; i++) {
             let val = this.fourierData[i];
-            if (val > this.fourierFreq1) {
+            if (val > db1) {
+                db2 = db1;
+                db1 = val;
                 this.fourierFreq2 = this.fourierFreq1;
-                this.fourierFreq1 = val;
-            } else if (val > this.fourierFreq2) {
-                this.fourierFreq2 = val;
+                this.fourierFreq1 = i * (24000 / this.bufferLength);
+            } else if (val > db2) {
+                db2 = val;
+                this.fourierFreq2 = i * (24000 / this.bufferLength);
             }
         }
     }

@@ -1,10 +1,12 @@
 "use strict"
-
 let canvas = document.querySelector('#graph-canvas');
 let ctx = canvas.getContext('2d');
 
-const f1 = 499.5;
-const f2 = 1000;
+let f1 = 499.5;
+let f2 = 1000;
+
+const SLIDER = 0;
+const MIC = 1;
 
 const WIDTH = canvas.width;
 const HEIGHT = canvas.height;
@@ -19,20 +21,29 @@ const PHASE = Math.PI / 4 + .1;
 let drawing;
 let t, t2 = 0;
 
+let input = MIC;
+
+let miccontext = new MicContext();
+
+startButton.addEventListener('click', function() {
+    miccontext.resume();
+});
+
 //draw out the curve for one period of the waveforms
 function draw() {
     drawing = requestAnimationFrame(draw);
 
-    //let a = 1;
-
-    let ratio = Math.min(f1,f2) / Math.max(f1,f2);
-    //if ((ratio != 0.5) && (ratio != 1)) {
-    //    a = Math.pow(1/((ratio-0.5)*(1-ratio)), 1/15) - Math.pow(1/0.0625, 1/15);
-    //}
+    if (input == SLIDER) {
         
-    //console.log(ratio, a);
+    } else if (input == MIC) {
+        miccontext.updateFourierData();
+        f1 = miccontext.getFourierFreq1();
+        f2 = miccontext.getFourierFreq2();
+        console.log(f1,f2);
+    }
 
-    let a = 1 - ratio;
+
+    let a = 1 -Math.min(f1,f2) / Math.max(f1,f2);
     
 
     ctx.fillStyle = `rgba(220, 220, 200, ${a})`;
@@ -65,13 +76,4 @@ function draw() {
     }    
 
     ctx.stroke();
-}
-
-function gcd(a, b) {
-    // base case
-    if(a === 0) { return b;}
-    if(b === 0) { return a;}
-
-    // general case
-    return gcd(b, a % b);
 }
