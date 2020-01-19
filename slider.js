@@ -45,7 +45,7 @@ function removeHz(id) {
     document.getElementById(id).value = expandFreq(val);
 }
 
-function toggleMicrophone(btn) {
+function toggleMicrophone() {
     microphoneEnabled = !microphoneEnabled;
     for (var i = 0; i < arguments.length; i++){
         if (microphoneEnabled){
