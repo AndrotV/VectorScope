@@ -1,0 +1,154 @@
+.header {
+	text-align: center;
+	grid-area: header;
+}
+.ratio {
+	text-align: right;
+	grid-area: ratio;
+}
+.freq {
+	text-align: center;
+	grid-area: freq;
+}
+.graph {
+	text-align: center;
+	grid-area: graph;
+}
+.freqSlid {
+	text-align: center;
+	grid-area: freqSlid;
+}
+.freqSlid2 {
+	text-align: center;
+	grid-area: freqSlid2;
+}
+.phaseShift1 {
+	text-align: left;
+	grid-area: phaseShift1;
+	width : 50vw;
+}
+
+#xPhase {
+	width:50vw;
+}
+
+#yPhase {
+	width:50vw;
+}
+
+.phaseShift2 {
+	text-align: right;
+	grid-area: phaseShift2;
+	width : 50vw;
+}
+
+.phase {
+	text-align: center;
+	grid-area: phase;
+}
+.microphone {
+	text-align: center;
+	grid-area: microphone;
+}
+
+.grid-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr; 
+	grid-template-rows: auto;
+	grid-template-areas:
+	"header header"
+	"ratio freq"
+	"graph freqSlid"
+	"graph freqSlid2"
+	"graph phase"
+	"graph phaseShift1"
+	"graph phaseShift2"
+	"graph microphone"
+}
+
+
+input[type=range] {
+	-webkit-appearance: none;
+	margin: 0px;
+	width: 40vw;
+	margin-top: 0px;
+	margin-bottom: 12px;
+	background-color: transparent;
+	color: #5AB0CC;
+  }
+
+  /* Clicking the slider */
+  input[type=range]:focus {
+	outline: none;
+  }
+
+  /* Track not button */
+  input[type=range]::-webkit-slider-runnable-track {
+	width: 100%;
+	height: 10.0px;
+	cursor: pointer;
+	box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+	background: #5AB0CC;
+	border-radius: 25px;
+	border: 1px solid #757575;
+  }
+  input[type=range]::-webkit-slider-thumb {
+	box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+	border: 2px solid #757575;
+	height: 18px;
+	width: 35px;
+	border-radius: 23px;
+	background: rgb(59, 151, 182);
+	cursor: pointer;
+	-webkit-appearance: none;
+	margin-top: -4.5px;
+  }
+  input[type=range]:focus::-webkit-slider-runnable-track {
+	background: #5AB0CC;
+  }
+
+  input[type=range]::-ms-track {
+	width: 100%;
+	height: 12.8px;
+	cursor: pointer;
+	background: transparent;
+	border-color: transparent;
+	border-width: 39px 0;
+	color: transparent;
+  }
+
+  input[type="text"]
+  {
+	  background: transparent;
+	  color: #868686;
+	  border: none;
+  }
+  
+  body {
+	padding: 2px;
+	background-color: #222222;
+  }
+
+  .square {
+	  height: 19px;
+	  width: 43px;
+	  border-radius: 23px;
+	  background-color: #ffffff;
+	  position: absolute;
+	  display: flex; 
+	  justify-content: center;
+  }
+
+  h1 {
+	  color: #5AB0CC;
+  }
+
+  p {
+	  font-size: large;
+	  color: #5AB0CC;
+  }
+
+  div {
+	  font-size: large;
+	  color: #757575
+  }
