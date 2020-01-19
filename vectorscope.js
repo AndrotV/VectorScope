@@ -3,8 +3,8 @@
 let canvas = document.querySelector('#graph-canvas');
 let ctx = canvas.getContext('2d');
 
-const f1 = 20;
-const f2 = 1;
+const f1 = 499.5;
+const f2 = 1000;
 
 const WIDTH = canvas.width;
 const HEIGHT = canvas.height;
@@ -23,7 +23,19 @@ let t, t2 = 0;
 function draw() {
     drawing = requestAnimationFrame(draw);
 
-    ctx.fillStyle = 'rgba(220, 220, 200, .3)';
+    //let a = 1;
+
+    let ratio = Math.min(f1,f2) / Math.max(f1,f2);
+    //if ((ratio != 0.5) && (ratio != 1)) {
+    //    a = Math.pow(1/((ratio-0.5)*(1-ratio)), 1/15) - Math.pow(1/0.0625, 1/15);
+    //}
+        
+    //console.log(ratio, a);
+
+    let a = 1 - ratio;
+    
+
+    ctx.fillStyle = `rgba(220, 220, 200, ${a})`;
     ctx.fillRect(0, 0, WIDTH, HEIGHT);
 
     ctx.lineWidth = 3;
@@ -39,7 +51,7 @@ function draw() {
 
     while (true) {
         //do this until t2 hits
-        for (t = t2; t <= t2 + 1/f1; t += 1/f1 / 100) {
+        for (t = t2; t <= t2 + 1/f1; t += 1/Math.max(f2,f1) / 100) {
             x = AMP * Math.sin(t * 2*Math.PI * f1 + PHASE); //map f1 to x
             y = AMP * Math.sin(t * 2*Math.PI * f2); //map f2 to y
             
