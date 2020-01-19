@@ -20,7 +20,7 @@ class MicContext {
             .then(function(stream) {
                 source = micContext.createMediaStreamSource(stream);
                 source.connect(micGain);
-                micAnalyser.connect(micContext.destination);
+                // micAnalyser.connect(micContext.destination);
                 micGain.connect(micAnalyser);
             }
         );
@@ -52,7 +52,6 @@ class MicContext {
     }
 
     updateFourierData() {
-        // this.fourierData = new Float32Array(this.bufferLength);
         this.fourierFreq1 = -Infinity;
         this.fourierFreq2 = -Infinity;
         this.micAnalyser.getFloatFrequencyData(this.fourierData);
