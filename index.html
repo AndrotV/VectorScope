@@ -3,26 +3,35 @@
 		<link rel="stylesheet" href="main.css" type="text/css">
     </head>
     <body>
-
-        <canvas id="graph-canvas" width="500" height="500"></canvas>
-
-        <div><button id="startButton">Start</button></div>
-
-		<input type="text" id="timeText" value="0"/>
-
-		<input type="text" id="freqText" value="0"/>
-
-        <div><button id="stopButton">Stop</button></div>
-        
+      <div class="grid-container">
+        <div class="header"><h1 style="font-size: 58;">Vectorscope</h1></div>
+        <div class="radio"><h1>Ratio</h1></div>
+        <div class="freq"><h1>Frequency</h1></div>
+        <div class="graph">
+          <canvas id="graph-canvas" width="500" height="500"></canvas>
+        </div>
+        <div class="freqSlid">
+          X: <input type="range" min="0" max="15" id="xHz" oninput="setVal('xHzInput', getVal('xHz', 2))">
+          <input style="font-size:large; width:75px;" value=256.0Hz maxlength=5 type="text" id="xHzInput" onmousedown="removeHz('xHzInput')" onkeyup="setVal('xHz', getVal('xHzInput', 2))" onfocusout="abbrFreqId('xHzInput')">
+        </div>
+        <div class="freqSlid2">
+          Y: <input type="range" min="0" max="15" id="yHz" oninput="setVal('yHzInput', getVal('yHz', 2))">
+          <input style="font-size:large; width:75px" value=256.0Hz maxlength=5 type="text" id="yHzInput" onmousedown="removeHz('yHzInput')" onkeyup="setVal('yHz', getVal('yHzInput', 2))" onfocusout="abbrFreqId('yHzInput')">
+        </div>
+        <div class="phaseShift1">
+          X: <input type="range" min="0" max="1" step="0.01" id="xPhase" oninput="setVal('xPhaseInput', getVal('xPhase', 0))">
+          <input style="font-size:large; width:75px;" value=0.5Hz maxlength=5 type="text" id="xPhaseInput" onmousedown="removeHz('xPhaseInput')" onkeyup="setVal('xPhase', getVal('xPhaseInput', 0))" onfocusout="abbrFreqId('xPhaseInput')">
+        </div>
+        <div class="phaseShift2">
+          Y: <input type="range" min="0" max="1" step="0.01" id="yPhase" oninput="setVal('yPhaseInput', getVal('yPhase', 0))">
+          <input style="font-size:large; width:75px;" value=0.5Hz maxlength=5 type="text" id="yPhaseInput" onmousedown="removeHz('yPhaseInput')" onkeyup="setVal('yPhase', getVal('yPhaseInput', 0))" onfocusout="abbrFreqId('yPhaseInput')">
+        </div>
+        <div class="phase"><h1>Phase</h1></div>
+        <div class="microphone"><Button id="microphoneBtn" onclick="toggleMicrophone('microphoneBtn', 'xHz', 'yHz', 'yPhase', 'xPhase')"><h2>Microphone</h2></Button></div>
+      </div>
         <script src="vectorscope.js"></script>
 
         <!-- Sliders at bottom of the screen -->
-        <input type="range" min="0" max="15" id="xHz" oninput="setVal('xHzInput', getVal('xHz'))">
-        <input style="font-size:x-small; width:40px;" value=256.0Hz maxlength=5 type="text" id="xHzInput" onmousedown="removeHz('xHzInput')" onkeyup="setVal('xHz', getVal('xHzInput'))" onfocusout="abbrFreqId('xHzInput')">
-
-        <input type="range" min="0" max="15" id="yHz" oninput="setVal('yHzInput', getVal('yHz'))">
-        <input style="font-size:x-small; width:40px" value=256.0Hz maxlength=6 type="text" id="yHzInput" onmousedown="removeHz('yHzInput')" onkeyup="setVal('yHz', getVal('yHzInput'))" onfocusout="abbrFreqId('yHzInput')">
-
     <script src="slider.js"></script>
         <br><br>
 
