@@ -23,8 +23,23 @@
 	grid-area: freqSlid2;
 }
 .phaseShift1 {
-	text-align: center;
+	text-align: left;
 	grid-area: phaseShift1;
+	width : 50vw;
+}
+
+#xPhase {
+	width:50vw;
+}
+
+#yPhase {
+	width:50vw;
+}
+
+.phaseShift2 {
+	text-align: right;
+	grid-area: phaseShift2;
+	width : 50vw;
 }
 
 .phase {
@@ -47,6 +62,7 @@
 	"graph freqSlid2"
 	"graph phase"
 	"graph phaseShift1"
+	"graph phaseShift2"
 	"graph microphone"
 }
 

@@ -2,6 +2,11 @@
 const LOG_BASE = 2;
 var microphoneEnabled = false
 
+const BGCOLOR = 'rgb(34,34,34)';
+const PTCOLOR = 'rgb(59, 151, 182)';
+var ph1 = 0;
+var ph2 = 0;
+
 function expandFreq(val){
     var expandFreq = 0;
     if (val.search(/.*k.*/, '') != -1) {
@@ -19,7 +24,7 @@ function getVal(id, base){
     var val = Number(expandFreq(document.getElementById(id).value));
     if (base == 0)
         return val;
-    return (Math.pow(base, val)).toFixed(1);
+    return (Math.pow(base, val));
 }
 
 function setSliderVal(id, val){
@@ -50,16 +55,16 @@ function setInputVal(id, val) {
 
     if (id == 'xHzInput') {
         f1 = val;
-        ctx.fillStyle = `rgb(220, 220, 200)`;
+        ctx.fillStyle = BGCOLOR;
         ctx.fillRect(0, 0, WIDTH, HEIGHT);
     } else if (id == 'yHzInput') {
         f2 = val;
-        ctx.fillStyle = `rgb(220, 220, 200)`;
+        ctx.fillStyle = BGCOLOR;
         ctx.fillRect(0, 0, WIDTH, HEIGHT);
     } else if (id == 'xPhaseInput') {
-        ctx.fillStyle = `rgb(220, 220, 200)`;
+        ctx.fillStyle = BGCOLOR;
         ctx.fillRect(0, 0, WIDTH, HEIGHT);
-        phase = val;
+        ph1 = val;
     }
 }
 
