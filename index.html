@@ -17,17 +17,14 @@
         <script src="vectorscope.js"></script>
 
         <!-- Sliders at bottom of the screen -->
-        <script src="slider.js"></script>
-        <br><br>
-		40Hz <input type="range" min="40" max="20000" id="xHz" oninput="setInputVal('xHzInput', getInputVal('xHz'))"> 20kHz
-		<input style="width:75px" maxlength=6 type="text" id="xHzInput" onchange="setInputVal('xHz', getInputVal('xHzInput'))">
-		0 <input type="range" min="0" max="1" step="0.1" id="xPhase"> 1
-		<br>
+        <input type="range" min="0" max="15" id="xHz" oninput="setVal('xHzInput', getVal('xHz'))">
+        <input style="font-size:x-small; width:40px;" value=256.0Hz maxlength=5 type="text" id="xHzInput" onmousedown="removeHz('xHzInput')" onkeyup="setVal('xHz', getVal('xHzInput'))" onfocusout="abbrFreqId('xHzInput')">
 
-		40Hz <input type="range" min="40" max="20000" id="yHz" oninput="setInputVal('yHzInput', getInputVal('yHz'))"> 20kHz
-		<input style="width:75px" maxlength=6 type="text" id="yHzInput" onchange="setInputVal('yHz', getInputVal('yHzInput'))">
-		0 <input type="range" min="0" max="1" step="0.1" id="yPhase"> 1
-        
+        <input type="range" min="0" max="15" id="yHz" oninput="setVal('yHzInput', getVal('yHz'))">
+        <input style="font-size:x-small; width:40px" value=256.0Hz maxlength=6 type="text" id="yHzInput" onmousedown="removeHz('yHzInput')" onkeyup="setVal('yHz', getVal('yHzInput'))" onfocusout="abbrFreqId('yHzInput')">
+
+    <script src="slider.js"></script>
+        <br><br>
 
     </body>
 </html>
