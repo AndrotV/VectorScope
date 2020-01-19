@@ -1,8 +1,66 @@
+.header {
+	text-align: center;
+	grid-area: header;
+}
+.ratio {
+	text-align: right;
+	grid-area: ratio;
+}
+.freq {
+	text-align: center;
+	grid-area: freq;
+}
+.graph {
+	text-align: center;
+	grid-area: graph;
+}
+.freqSlid {
+	text-align: center;
+	grid-area: freqSlid;
+}
+.freqSlid2 {
+	text-align: center;
+	grid-area: freqSlid2;
+}
+.phaseShift1 {
+	text-align: center;
+	grid-area: phaseShift1;
+}
+.phaseShift2 {
+	text-align: center;
+	grid-area: phaseShift2;
+}
+.phase {
+	text-align: center;
+	grid-area: phase;
+}
+.microphone {
+	text-align: center;
+	grid-area: microphone;
+}
+
+.grid-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr; 
+	grid-template-rows: auto;
+	grid-template-areas:
+	"header header"
+	"ratio freq"
+	"graph freqSlid"
+	"graph freqSlid2"
+	"graph phase"
+	"graph phaseShift1"
+	"graph phaseShift2"
+	"graph microphone"
+}
+
+
 input[type=range] {
 	-webkit-appearance: none;
 	margin: 0px;
-	width: 20vw;
+	width: 40vw;
 	margin-top: 0px;
+	margin-bottom: 12px;
 	background-color: transparent;
 	color: #5AB0CC;
   }
@@ -55,8 +113,8 @@ input[type=range] {
   }
   
   body {
-	padding: 30px;
-	background-color: #000000;
+	padding: 2px;
+	background-color: #222222;
   }
 
   .square {
@@ -67,4 +125,18 @@ input[type=range] {
 	  position: absolute;
 	  display: flex; 
 	  justify-content: center;
+  }
+
+  h1 {
+	  color: #5AB0CC;
+  }
+
+  p {
+	  font-size: large;
+	  color: #5AB0CC;
+  }
+
+  div {
+	  font-size: large;
+	  color: #757575
   }
