@@ -2,8 +2,8 @@
 let canvas = document.querySelector('#graph-canvas');
 let ctx = canvas.getContext('2d');
 
-let f1 = 499.5;
-let f2 = 1000;
+let f1 = 1;
+let f2 = 50;
 
 const SLIDER = 0;
 const MIC = 1;
@@ -21,13 +21,12 @@ const PHASE = Math.PI / 4 + .1;
 let drawing;
 let t, t2 = 0;
 
-let input = MIC;
+let input = SLIDER;
 
-let miccontext = new MicContext();
+ctx.fillStyle = `rgba(220, 220, 200)`;
+ctx.fillRect(0, 0, WIDTH, HEIGHT);
 
-startButton.addEventListener('click', function() {
-    miccontext.resume();
-});
+//let miccontext = new MicContext();
 
 //draw out the curve for one period of the waveforms
 function draw() {
@@ -42,9 +41,13 @@ function draw() {
         console.log(f1,f2);
     }
 
+    //let a = 1;
 
-    let a = 1 -Math.min(f1,f2) / Math.max(f1,f2);
-    
+    let minf = Math.min(f1, f2);
+
+    let g = gcd(f1, f2);
+
+    let a = (minf - g) / minf / 10;    
 
     ctx.fillStyle = `rgba(220, 220, 200, ${a})`;
     ctx.fillRect(0, 0, WIDTH, HEIGHT);
@@ -62,18 +65,29 @@ function draw() {
 
     while (true) {
         //do this until t2 hits
-        for (t = t2; t <= t2 + 1/f1; t += 1/Math.max(f2,f1) / 100) {
+        for (t = t2; t <= t2 + (1/f1 || 0); t += (1/Math.max(f2,f1) || 0) / 100) {
             x = AMP * Math.sin(t * 2*Math.PI * f1 + PHASE); //map f1 to x
             y = AMP * Math.sin(t * 2*Math.PI * f2); //map f2 to y
-            
-            //console.log(t);
 
             ctx.lineTo(ORIGIN.x + x, ORIGIN.y - y);
         }
-        t2 += 1/f1;
+        t2 += (1/f1 || 0);
 
-        if (t2 >= 1/f2) break;
+        if (f2 == 0 || t2 >= 1/f2) break;
     }    
 
     ctx.stroke();
+}
+
+startButton.addEventListener('click', function() {
+    miccontext.resume();
+});
+
+function gcd(a, b) {
+    // base cases
+    if (a === 0) { return b;}
+    if (b === 0) { return a;}
+
+    // general case
+    return gcd(b, a % b);
 }

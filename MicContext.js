@@ -58,6 +58,7 @@ class MicContext {
         //console.log(this.fourierData);
         for (let i = 0; i < this.bufferLength; i++) {
             let val = this.fourierData[i];
+            if (val < -50) continue;
             if (val > db1) {
                 db2 = db1;
                 db1 = val;
