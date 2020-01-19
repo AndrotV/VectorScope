@@ -4,6 +4,9 @@ class MicContext {
     micGain;
     micContext;
     bufferLenght;
+    fourierData;
+    fourierFreq1;
+    fourierFreq2;
 
     constructor() {
         let source;
@@ -24,6 +27,7 @@ class MicContext {
         this.micAnalyser.fftSize = 2048;
         this.bufferLength = this.micAnalyser.frequencyBinCount;
         this.micDataArray = new Uint8Array(this.bufferLength);
+        this.fourierData = new Float32Array(this.bufferLength);
     }
 
     resume() {
@@ -42,9 +46,34 @@ class MicContext {
         this.micGain.gain.value = gainval;
     }
 
-    getData() {
+    getMicRawData() {
         this.micAnalyser.getByteTimeDomainData(this.micDataArray);
         return this.micDataArray;
+    }
+
+    updateFourierData() {
+        // this.fourierData = new Float32Array(this.bufferLength);
+        this.fourierFreq1 = -Infinity;
+        this.fourierFreq2 = -Infinity;
+        this.micAnalyser.getFloatFrequencyData(this.fourierData);
+        console.log(this.fourierData);
+        for (let i = 0; i < this.bufferLength; i++) {
+            let val = this.fourierData[i];
+            if (val > this.fourierFreq1) {
+                this.fourierFreq2 = this.fourierFreq1;
+                this.fourierFreq1 = val;
+            } else if (val > this.fourierFreq2) {
+                this.fourierFreq2 = val;
+            }
+        }
+    }
+
+    getFourierFreq1() {
+        return this.fourierFreq1;
+    }
+
+    getFourierFreq2() {
+        return this.fourierFreq2;
     }
 
 }
