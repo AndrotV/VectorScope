@@ -21,12 +21,12 @@ const PHASE = Math.PI / 4 + .1;
 let drawing;
 let t, t2 = 0;
 
-let input = SLIDER;
+let input = MIC;
 
 ctx.fillStyle = `rgba(220, 220, 200)`;
 ctx.fillRect(0, 0, WIDTH, HEIGHT);
 
-//let miccontext = new MicContext();
+let miccontext = new MicContext();
 
 //draw out the curve for one period of the waveforms
 function draw() {
@@ -36,9 +36,15 @@ function draw() {
         
     } else if (input == MIC) {
         miccontext.updateFourierData();
+        let f1prev = f1;
+        let f2prev = f2;
         f1 = miccontext.getFourierFreq1();
         f2 = miccontext.getFourierFreq2();
-        console.log(f1,f2);
+        //console.log(f1,f2);
+        if (f1 != f1prev || f2 != f2prev) {
+            ctx.fillStyle = `rgb(220, 220, 200)`;
+            ctx.fillRect(0, 0, WIDTH, HEIGHT);
+        }
     }
 
     //let a = 1;
@@ -47,7 +53,7 @@ function draw() {
 
     let g = gcd(f1, f2);
 
-    let a = (minf - g) / minf / 10;    
+    let a = (minf - g) / minf / 10; 
 
     ctx.fillStyle = `rgba(220, 220, 200, ${a})`;
     ctx.fillRect(0, 0, WIDTH, HEIGHT);
