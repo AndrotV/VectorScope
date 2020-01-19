@@ -50,9 +50,15 @@ function setInputVal(id, val) {
 
     if (id == 'xHzInput') {
         f1 = val;
+        ctx.fillStyle = `rgb(220, 220, 200)`;
+        ctx.fillRect(0, 0, WIDTH, HEIGHT);
     } else if (id == 'yHzInput') {
         f2 = val;
+        ctx.fillStyle = `rgb(220, 220, 200)`;
+        ctx.fillRect(0, 0, WIDTH, HEIGHT);
     } else if (id == 'xPhaseInput') {
+        ctx.fillStyle = `rgb(220, 220, 200)`;
+        ctx.fillRect(0, 0, WIDTH, HEIGHT);
         phase = val;
     }
 }

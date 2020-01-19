@@ -21,7 +21,7 @@ let phase = Math.PI / 4 + .1;
 let drawing;
 let t, t2 = 0;
 
-let input = MIC;
+let input = SLIDER;
 
 ctx.fillStyle = `rgba(220, 220, 200)`;
 ctx.fillRect(0, 0, WIDTH, HEIGHT);
@@ -33,8 +33,7 @@ function draw() {
     drawing = requestAnimationFrame(draw);
 
     if (input == SLIDER) {
-        //ctx.fillStyle = `rgb(220, 220, 200)`;
-        //ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
 
     } else if (input == MIC) {
         miccontext.updateFourierData();
