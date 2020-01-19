@@ -70,7 +70,6 @@ function draw() {
 
     ctx.moveTo(ORIGIN.x + x, ORIGIN.y - y);
 
-
     while (true) {
         //do this until t2 hits
         for (t = t2; t <= t2 + 1/f1; t += 1/Math.max(f2,f1) / 100) {
