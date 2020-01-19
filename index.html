@@ -23,12 +23,8 @@
           X: <input type="range" min="0" max="1" step="0.01" id="xPhase" oninput="setVal('xPhaseInput', getVal('xPhase', 0))">
           <input style="font-size:large; width:75px;" value=0.5Hz maxlength=5 type="text" id="xPhaseInput" onmousedown="removeHz('xPhaseInput')" onkeyup="setVal('xPhase', getVal('xPhaseInput', 0))" onfocusout="abbrFreqId('xPhaseInput')">
         </div>
-        <div class="phaseShift2">
-          Y: <input type="range" min="0" max="1" step="0.01" id="yPhase" oninput="setVal('yPhaseInput', getVal('yPhase', 0))">
-          <input style="font-size:large; width:75px;" value=0.5Hz maxlength=5 type="text" id="yPhaseInput" onmousedown="removeHz('yPhaseInput')" onkeyup="setVal('yPhase', getVal('yPhaseInput', 0))" onfocusout="abbrFreqId('yPhaseInput')">
-        </div>
         <div class="phase"><h1>Phase</h1></div>
-        <div class="microphone"><Button id="microphoneBtn" onclick="toggleMicrophone('microphoneBtn', 'xHz', 'yHz', 'yPhase', 'xPhase')"><h2>Microphone</h2></Button></div>
+        <div class="microphone"><Button id="microphoneBtn" onclick="toggleMicrophone('xHz', 'yHz')"><h2>Microphone</h2></Button></div>
       </div>
         <script src="vectorscope.js"></script>
 

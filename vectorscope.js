@@ -32,8 +32,14 @@ let miccontext = new MicContext();
 function draw() {
     drawing = requestAnimationFrame(draw);
 
+    PHASE = getVal("xPhase", 0);
     if (input == SLIDER) {
-        
+        ctx.fillStyle = `rgb(220, 220, 200)`;
+        ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+        // f1 = getVal("xHz", 2);
+        // f2 = getVal("yHz", 2);
+        console.log(f1);
     } else if (input == MIC) {
         miccontext.updateFourierData();
         let f1prev = f1;
@@ -86,8 +92,21 @@ function draw() {
     ctx.stroke();
 }
 
+
+let micon = false;
+let startButton = document.querySelector("#microphoneBtn");
 startButton.addEventListener('click', function() {
-    miccontext.resume();
+    if (!micon) {
+        console.log("Mic on!");
+        miccontext.resume();
+        input = MIC;
+        micon = true;
+    } else {
+        console.log("Mic off!");
+        // miccontext.suspend();
+        input = SLIDER;
+        micon = false;
+    }
 });
 
 function gcd(a, b) {
