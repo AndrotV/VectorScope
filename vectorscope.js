@@ -2,8 +2,8 @@
 let canvas = document.querySelector('#graph-canvas');
 let ctx = canvas.getContext('2d');
 
-let f1 = 180;
-let f2 = 200;
+let f1 = 440;
+let f2 = 880;
 
 const SLIDER = 0;
 const MIC = 1;

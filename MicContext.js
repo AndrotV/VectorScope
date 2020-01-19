@@ -24,7 +24,7 @@ class MicContext {
                 micGain.connect(micAnalyser);
             }
         );
-        this.micAnalyser.fftSize = 2048;
+        this.micAnalyser.fftSize = 32768;
         this.bufferLength = this.micAnalyser.frequencyBinCount;
         this.micDataArray = new Uint8Array(this.bufferLength);
         this.fourierData = new Float32Array(this.bufferLength);
