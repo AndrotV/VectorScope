@@ -52,6 +52,8 @@ class MicContext {
     }
 
     updateFourierData() {
+        this.fourierFreq1 = 30;
+        this.fourierFreq2 = 1;
         let db1 = -Infinity;
         let db2 = -Infinity;
         this.micAnalyser.getFloatFrequencyData(this.fourierData);
@@ -62,21 +64,39 @@ class MicContext {
             if (val > db1) {
                 db2 = db1;
                 db1 = val;
-                this.fourierFreq2 = this.fourierFreq1;
-                this.fourierFreq1 = i * (24000 / this.bufferLength);
+
+                let f2 = this.fourierFreq1;
+                let f1 = i * (24000 / this.bufferLength);
+                if (this.goodTol(f1, f2)) {
+                    this.fourierFreq2 = this.fourierFreq1;
+                    this.fourierFreq1 = i * (24000 / this.bufferLength);
+                }
             } else if (val > db2) {
                 db2 = val;
-                this.fourierFreq2 = i * (24000 / this.bufferLength);
+
+                let f2 = i * (24000 / this.bufferLength);
+                let f1 = this.fourierFreq1;
+                if (this.goodTol(f1, f2)) {
+                    this.fourierFreq2 = i * (24000 / this.bufferLength);
+                }
             }
         }
     }
 
     getFourierFreq1() {
+        console.log(this.fourierFreq1);
         return this.fourierFreq1;
     }
 
     getFourierFreq2() {
+        console.log(this.fourierFreq2);
         return this.fourierFreq2;
     }
 
+    goodTol(f1, f2) {
+        let m = Math.max(f1, f2);
+        let n = (m / (Math.log(m) / Math.log(2))) / 6;
+        console.log("TOL: " + n);
+        return Math.abs(f1 - f2) > n;
+    }
 }
