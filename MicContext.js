@@ -28,6 +28,7 @@ class MicContext {
         this.bufferLength = this.micAnalyser.frequencyBinCount;
         this.micDataArray = new Uint8Array(this.bufferLength);
         this.fourierData = new Float32Array(this.bufferLength);
+        this.micAnalyser.smoothingTimeConstant = 0;
     }
 
     resume() {
