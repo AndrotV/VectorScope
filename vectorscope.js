@@ -32,8 +32,9 @@ let miccontext = new MicContext();
 function draw() {
     drawing = requestAnimationFrame(draw);
 
-    if (input == SLIDER) {
 
+    phase = getVal("xPhase", 0);
+    if (input == SLIDER) {
 
     } else if (input == MIC) {
         miccontext.updateFourierData();
