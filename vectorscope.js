@@ -32,14 +32,10 @@ let miccontext = new MicContext();
 function draw() {
     drawing = requestAnimationFrame(draw);
 
-    PHASE = getVal("xPhase", 0);
     if (input == SLIDER) {
-        ctx.fillStyle = `rgb(220, 220, 200)`;
-        ctx.fillRect(0, 0, WIDTH, HEIGHT);
+        //ctx.fillStyle = `rgb(220, 220, 200)`;
+        //ctx.fillRect(0, 0, WIDTH, HEIGHT);
 
-        // f1 = getVal("xHz", 2);
-        // f2 = getVal("yHz", 2);
-        console.log(f1);
     } else if (input == MIC) {
         miccontext.updateFourierData();
         let f1prev = f1;

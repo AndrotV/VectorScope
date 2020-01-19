@@ -2,16 +2,6 @@
 const LOG_BASE = 2;
 var microphoneEnabled = false
 
-function abbrFreqId(id){
-    document.getElementById(id).value = abbrFreq(document.getElementById(id).value);
-}
-
-function abbrFreq(val){
-    if (val < 1000) 
-        return val + "Hz";
-    return (val/1000).toFixed(1) + "kHz"
-}
-
 function expandFreq(val){
     var expandFreq = 0;
     if (val.search(/.*k.*/, '') != -1) {
@@ -32,12 +22,39 @@ function getVal(id, base){
     return (Math.pow(base, val)).toFixed(1);
 }
 
-function setVal(id, val){
+function setSliderVal(id, val){
+
+    if (id == "xPhase") {
+        if (val < 0)
+            val = 0;
+        else if (val > 1)
+            val = 1;
+
+        document.getElementById(id).value = val;
+    }
+
     if (val < 0)
         val = 0;
     else if (val > 24000)
         val = 24000;
-    document.getElementById(id).value = abbrFreq(val);
+    document.getElementById(id).value = Math.log2(val);
+
+}
+
+function setInputVal(id, val) {
+    if (val < 0)
+        val = 0;
+    else if (val > 24000)
+        val = 24000;
+    document.getElementById(id).value = val;
+
+    if (id == 'xHzInput') {
+        f1 = val;
+    } else if (id == 'yHzInput') {
+        f2 = val;
+    } else if (id == 'xPhaseInput') {
+        phase = val;
+    }
 }
 
 function removeHz(id) {
@@ -57,15 +74,3 @@ function toggleMicrophone() {
         }
     }
 }
-
-let fslide1 = document.querySelector("#xHz");
-fslide1.addEventListener("change", (e) => {
-    f1 = getVal("xHz", 2);
-});
-
-let fslide2 = document.querySelector("#yHz");
-fslide1.addEventListener("change", (e) => {
-    // f2 = e.target.value;
-    f2 = getVal("yHz", 2);
-    console.log("F2" + f2);
-});

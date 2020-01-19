@@ -12,16 +12,16 @@
           <canvas id="graph-canvas" width="500" height="500"></canvas>
         </div>
         <div class="freqSlid">
-          X: <input type="range" min="0" max="15" id="xHz" oninput="setVal('xHzInput', getVal('xHz', 2))">
-          <input style="font-size:large; width:75px;" value=256.0Hz maxlength=5 type="text" id="xHzInput" onmousedown="removeHz('xHzInput')" onkeyup="setVal('xHz', getVal('xHzInput', 2))" onfocusout="abbrFreqId('xHzInput')">
+          X: <input type="range" min="0" max="15" id="xHz" onmouseup="setInputVal('xHzInput', getVal('xHz', 2))">
+          <input style="font-size:large; width:75px;" value=256.0Hz maxlength=5 type="text" id="xHzInput" onmousedown="removeHz('xHzInput')" onchange="setSliderVal('xHz', getVal('xHzInput', 0)); setInputVal('xHzInput', getVal('xHzInput', 0))" >
         </div>
         <div class="freqSlid2">
-          Y: <input type="range" min="0" max="15" id="yHz" oninput="setVal('yHzInput', getVal('yHz', 2))">
-          <input style="font-size:large; width:75px" value=256.0Hz maxlength=5 type="text" id="yHzInput" onmousedown="removeHz('yHzInput')" onkeyup="setVal('yHz', getVal('yHzInput', 2))" onfocusout="abbrFreqId('yHzInput')">
+          Y: <input type="range" min="0" max="15" id="yHz" onmouseup="setInputVal('yHzInput', getVal('yHz', 2))">
+          <input style="font-size:large; width:75px" value=256.0Hz maxlength=5 type="text" id="yHzInput" onmousedown="removeHz('yHzInput')" onchange="setSliderVal('yHz', getVal('yHzInput', 0)); setInputVal('yHzInput', getVal('yHzInput', 0))">
         </div>
         <div class="phaseShift1">
-          X: <input type="range" min="0" max="1" step="0.01" id="xPhase" oninput="setVal('xPhaseInput', getVal('xPhase', 0))">
-          <input style="font-size:large; width:75px;" value=0.5Hz maxlength=5 type="text" id="xPhaseInput" onmousedown="removeHz('xPhaseInput')" onkeyup="setVal('xPhase', getVal('xPhaseInput', 0))" onfocusout="abbrFreqId('xPhaseInput')">
+          X: <input type="range" min="0" max="1" step="0.01" id="xPhase" oninput="setInputVal('xPhaseInput', getVal('xPhase', 0))">
+          <input style="font-size:large; width:75px;" value=0.5Hz maxlength=5 type="text" id="xPhaseInput" onmousedown="removeHz('xPhaseInput')" onchange="setSliderVal('xPhase', getVal('xPhaseInput', 0)); setInputVal('xPhaseInput', getVal('xPhase', 0));">
         </div>
         <div class="phase"><h1>Phase</h1></div>
         <div class="microphone"><Button id="microphoneBtn" onclick="toggleMicrophone('xHz', 'yHz')"><h2>Microphone</h2></Button></div>
