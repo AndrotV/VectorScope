@@ -16,7 +16,9 @@ const ORIGIN = {x: WIDTH/2, y: HEIGHT/2};
 const AMP = canvas.height / 2; //half height of canvas
 console.log(AMP);
 
-const PHASE = Math.PI / 4 + .1;
+// const PHASE = Math.PI / 4 + .1;
+// const PHASE = Math.PI / 2;
+let PHASE = Math.PI / 2;
 
 let drawing;
 let t, t2 = 0;
@@ -32,8 +34,14 @@ let miccontext = new MicContext();
 function draw() {
     drawing = requestAnimationFrame(draw);
 
+    PHASE = getVal("xPhase", 0);
     if (input == SLIDER) {
-        
+        ctx.fillStyle = `rgb(220, 220, 200)`;
+        ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+        // f1 = getVal("xHz", 2);
+        // f2 = getVal("yHz", 2);
+        console.log(f1);
     } else if (input == MIC) {
         miccontext.updateFourierData();
         let f1prev = f1;
@@ -86,8 +94,21 @@ function draw() {
     ctx.stroke();
 }
 
+
+let micon = false;
+let startButton = document.querySelector("#microphoneBtn");
 startButton.addEventListener('click', function() {
-    miccontext.resume();
+    if (!micon) {
+        console.log("Mic on!");
+        miccontext.resume();
+        input = MIC;
+        micon = true;
+    } else {
+        console.log("Mic off!");
+        // miccontext.suspend();
+        input = SLIDER;
+        micon = false;
+    }
 });
 
 function gcd(a, b) {

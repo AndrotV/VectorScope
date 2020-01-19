@@ -57,3 +57,15 @@ function toggleMicrophone() {
         }
     }
 }
+
+let fslide1 = document.querySelector("#xHz");
+fslide1.addEventListener("change", (e) => {
+    f1 = getVal("xHz", 2);
+});
+
+let fslide2 = document.querySelector("#yHz");
+fslide1.addEventListener("change", (e) => {
+    // f2 = e.target.value;
+    f2 = getVal("yHz", 2);
+    console.log("F2" + f2);
+});

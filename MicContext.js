@@ -52,7 +52,7 @@ class MicContext {
     }
 
     updateFourierData() {
-        this.fourierFreq1 = 30;
+        this.fourierFreq1 = 10;
         this.fourierFreq2 = 1;
         let db1 = -Infinity;
         let db2 = -Infinity;
